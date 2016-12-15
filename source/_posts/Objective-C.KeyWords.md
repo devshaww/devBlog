@@ -2,12 +2,9 @@
 title: Objective-C属性约束关键字杂谈
 date: 2016-04-06 21:57:49
 categories: iOS
-toc: true
 ---
-```bash
-** copy retain assign的差别在于对象属性的"set"方法 **
-```
-## NSString 与 NSMutableString
+
+#### NSString 与 NSMutableString
 NSString是`不可变`字符串对象，这句话的意思，结合代码：
 <!-- more -->
 ```
@@ -58,7 +55,7 @@ Program ended with exit code: 0
 
 ## 
 
-## mutableCopy(遵从`NSMutableCopying`协议的对象可用) 与 copy (遵从`NSCopying`协议的对象可用)
+#### mutableCopy(遵从`NSMutableCopying`协议的对象可用) 与 copy (遵从`NSCopying`协议的对象可用)
 
 `mutableCopy`返回的对象是`可变`的, `copy`返回的是`不可变`的。
 
@@ -168,7 +165,7 @@ setName:(NSString *)name {
 
 ```
 
-## 小结
+#### 小结
 复制方法存在的目的就是为了复制出一个当对它做出改变而不会影响源对象的对象.
 
 当然如果想改变一个NSString对象也不是不可以
@@ -298,7 +295,7 @@ weak指针多数被用到有父子关系的两个对象上，父对象用strong�
 `retain`的属性的`setter`是先`release`旧值，再`retain`新值
 ```
 
-@property (nonatomic,retain) NSString *string;   
+@property (nonatomic,retain) NSString *string;
 // 当赋给string属性的对象总是NSString *,那么用retain和copy都是一样的
 
 -(void)setString:(NSString *)str{
@@ -315,4 +312,8 @@ weak指针多数被用到有父子关系的两个对象上，父对象用strong�
 
 }
 
+```
+<br/>
+```bash
+** copy retain assign的差别事实上就是在于对象属性的"set"方法 **
 ```

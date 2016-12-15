@@ -4,12 +4,10 @@ date: 2016-08-03 16:12:42
 categories: C语言
 ---
 
-> All Learned From [Here](https://www.mindstick.com/Articles/1809/objective-c-understanding-extern-keyword)
-
-## 前言
+#### 前言
 `C`和`Objective-C`的`function`前面都有个隐含的`extern`,对于`function`来说，有没有`extern`都无所谓，但变量不一样。
 <!--more-->
-#### `declaration` 声明可以无数次但定义只能有一次
+##### `declaration` 声明可以无数次但定义只能有一次
 * 声明但不定义：no memory allocation for it
 
 ```bash
@@ -20,13 +18,13 @@ extern int var;
 > If we prepend extern in variable as default,then the memory for them will not be allocated ever.
 
 
-#### `definition` 定义且声明一个变量：memory allocated
+##### `definition` 定义且声明一个变量：memory allocated
 
 ```bash
 int var;
 ```
 
-#### Examples that work
+###### Examples that work
 
 ```
 int var;
@@ -78,7 +76,7 @@ return 0;
 ```
 
 
-### Examples that don't work
+###### Examples that don't work
 
 ```
 extern int var;
@@ -94,7 +92,7 @@ return 0;
 // var 被声明了但没有被定义,也就是没有被分配内存,所以赋值行为是错误的
 ```
 
-## 总结
+#### 总结
 ```bash
 1. Declaration can be done any number of times but definition only once.
 ```
@@ -110,3 +108,5 @@ return 0;
 ```bash
 5. As an exception, when an extern variable is declared with initialization, it is taken as definition of the variable as well.
 ```
+
+> All Learned From [Here](https://www.mindstick.com/Articles/1809/objective-c-understanding-extern-keyword)
