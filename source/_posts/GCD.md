@@ -11,6 +11,8 @@ categories: iOS
 
 <!--more-->
 
+<br/>
+
 > 2. `GCD`是纯C语言的，`GCD`中的函数大多数以`dispatch`开头。
 
 > 3. `GCD`存在于 `libdispatch.dylib` 库中，但不需要手动导入，默认包含。
@@ -47,6 +49,7 @@ categories: iOS
 	```bash
     dispatch_queue_t dispatch_get_main_queue(void);
     ```
+<br/>
 
 * 并发队列`global dispatch queue`，一般是后台长时间执行的任务比如下载，可以通过`dispatch_get_global_queue`获取全局并行发队列或者通过(`iOS 5`及以后)`dispatch_queue_create`创建一个。
 
@@ -67,6 +70,8 @@ categories: iOS
 	```
 	dispatch_queue_t queue = dispatch_queue_create("global_queue_name", DISPATCH_QUEUE_CONCURRENT);
 	```
+    
+<br/>
 
 * 串行队列`serial queues`，可以通过`dispatch_get_main_queue`获得主队列或者通过`dispatch_create`创建一个
 
@@ -77,10 +82,10 @@ categories: iOS
 	```
 	dispatch_queue_t queue = dispatch_queue_create("serial_queue_name",  NULL);
 	```
-
+<br/>
 > Note: 系统同时提供给你好几个并发队列。它们叫做全局调度队列（Global Dispatch Queues）。目前的四个全局队列有着不同的优先级：background、low、default 以及 high。要知道，Apple的API也会使用这些队列，所以你添加的任何任务都不会是这些队列中唯一的任务。
 
-> From [Here](https://www.raywenderlich.com/60749/grand-central-dispatch-in-depth-part-1) and [译文](https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md)
+	> From [Here](https://www.raywenderlich.com/60749/grand-central-dispatch-in-depth-part-1) and [译文](https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md)
 
 ### 关于`dispatch queues`的另外一些关键点
 
@@ -111,6 +116,8 @@ categories: iOS
 * `请求与保持`条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。
 * `不剥夺`条件:进程已获得的资源，在末使用完之前，不能强行剥夺。
 * `循环等待`(`形成回路`)条件:若干进程之间形成一种头尾相接的循环等待资源关系。
+
+<br/>
 
 说人话：有两个线程`A`和`B`都卡住了，因为`A`在等`B`，`B`也在等`A`，相互等待对方完成某些操作后自己才能进行操作，于是两者什么事也做不了，这就造成了`死锁`。
 
@@ -144,7 +151,7 @@ P(seat);
 ```bash
 想进图书馆的"A"等着"seat"释放, 想出去的人"B"等着A释放"mutex"
 ```
-
+<br/>
 ### 什么样的代码会导致死锁？
 
 ```
