@@ -4,7 +4,7 @@ date: 2016-10-22 20:50:19
 categories: iOS
 ---
 
-## 前言
+#### 前言
 在了解了`Block`的基础知识后，希望对它有更多的认识比如：
 * `Block`里的`野指针`错误为什么会出现？怎样避免？
 * `Block`里的`循环引用`的原理是什么？
@@ -21,13 +21,13 @@ categories: iOS
 
 ![image](https://drops.azureedge.net/drops/files/acc_521713/wAjZ?rscd=inline%3B%20filename%3DIMG_4594.PNG&rsct=image%2Fpng&se=2016-12-12T08%3A50%3A28Z&sig=5yFCTx2fs7ykmkkoF%2FgwLyP5ODd08MdEl1u7tbmOLPI%3D&sp=r&sr=b&st=2016-12-12T07%3A50%3A28Z&sv=2013-08-15)
 
-## Block的种类
-### NSStackBlock
+#### Block的种类
+##### NSStackBlock
 * 引用了外部变量的`block`
 * `MRC`下，`NSStackBlock`位于`栈`中，`block`函数体返回后，其位于的栈段会被清除，即`block`会无效，此时如果再次访问`block`，就会造成`野指针`错误。`解决方法`是：通过对block做`copy`操作，使之转换为位于`堆`中的`NSMallocBlock`。
 * `ARC`下，与`MRC`不同的是，不需要再做`copy`操作，在`ARC`下，所有的block都会自动转到堆区，即NSMallocBlock。
 
-#### e.g.
+##### e.g.
 
 ```
 typedef void (^myBlock)();
@@ -39,15 +39,15 @@ myBlock block = ^ {
 
 ```
 
-### NSMallocBlock
+#### NSMallocBlock
 * 由`NSStackBlock copy`得来，位于内存的`堆`区。
 
 
-### NSGlobalStack
+#### NSGlobalStack
 * 没有引用外部变量的`block`就是`NSGlobalStack`。
 * 既不位于`堆`，也不位于`栈`,是`程序段`。
 
-#### e.g.
+##### e.g.
 ```
 int (^sum)(int, int) = ^(int x, int y) {
 	return x + y;
@@ -55,7 +55,7 @@ int (^sum)(int, int) = ^(int x, int y) {
 
 ```
 
-## 野指针错误
+#### 野指针错误
 ```
 typedef void (^block)();
 
@@ -84,7 +84,7 @@ void test() {
 * 实例变量或属性在block copy时不是直接retain这个对象本身，而是retain self。
 <br/>
 下面来做一个稍大的测试以便更好地理解
-####e.g
+#####e.g
 
 
 

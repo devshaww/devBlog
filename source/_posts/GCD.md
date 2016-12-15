@@ -4,7 +4,7 @@ date: 2016-09-20 20:26:49
 categories: iOS
 ---
 
-## 前言
+#### 前言
 
 >  `GCD - Grand Central Dispatch`是Apple开发的一个多核编程的较新的解决方法，是苹果主推的多线程处理机制。在多核CPU的状态下，`GCD`的性能很高。
 它自动利用更多的`CPU`内核，管理线程生命周期，程序员不需要编写任何线程管理代码，只需要给定要让`GCD`执行的任务。
@@ -21,7 +21,7 @@ categories: iOS
 
 > 5. `GCD`一般和`Block`一起使用，在`Block`回调中处理程序操作。
 
-## GCD的三种调度队列
+#### GCD的三种调度队列
 > [官方文档传送门](https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1)
 
 ###### ** 首先需要明确`4`个术语的概念 **
@@ -44,7 +44,7 @@ categories: iOS
 
 	![image](https://cdn2.raywenderlich.com/wp-content/uploads/2014/01/Serial-Queue-480x272.png)
 
-### 三种调度队列(dispatch queues)
+##### 三种调度队列(dispatch queues)
 * 运行在主线程的主队列的全局可获得的`main queue`，一般是执行和`UI`相关的任务比如更新`UI`的显示，通过`dispatch_get_main_queue`获取,不需要创建。
 	```bash
     dispatch_queue_t dispatch_get_main_queue(void);
@@ -87,7 +87,7 @@ categories: iOS
 
 	> From [Here](https://www.raywenderlich.com/60749/grand-central-dispatch-in-depth-part-1) and [译文](https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md)
 
-### 关于`dispatch queues`的另外一些关键点
+#### 关于`dispatch queues`的另外一些关键点
 
 * dispatch queue之间，任务的执行是并发的。任务的串行执行是相对单个dislatch queue而言的.
 
@@ -108,8 +108,8 @@ categories: iOS
 > 由于`concurrent`的翻译是`并发`，所以我没有用过`并行`这个词，至于用得对不对，我不清楚。
 
 
-## 线程死锁(deadlock)
-### 什么是死锁？
+#### 线程死锁(deadlock)
+##### 什么是死锁？
 
 > ** `死锁`发生的四个必要条件 **
 * `互斥`条件：一个资源每次只能被一个进程使用。
@@ -152,7 +152,7 @@ P(seat);
 想进图书馆的"A"等着"seat"释放, 想出去的人"B"等着A释放"mutex"
 ```
 <br/>
-### 什么样的代码会导致死锁？
+##### 什么样的代码会导致死锁？
 
 ```
 dispatch_sync(diapatch_get_main_queue(),^{
